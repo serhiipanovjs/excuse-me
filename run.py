@@ -39,6 +39,26 @@ def animated_input(text):
         time.sleep(0.05)
     return input()
 
+def error_generator(type):
+    match type:
+        case "number":
+            print(Fore.RED + "Invalid input. Enter valid number for Menu choice.\n")
+        case _:
+            print(Fore.RED + "Invalid input.\n")
+
+def validate_number_input(validValues):
+    while True:
+        try:
+            choice = int(input("Please enter your choice: \n"))
+            if choice in validValues:
+                break
+            error_generator("number")
+            continue
+        except ValueError:
+            error_generator("number")
+            continue
+    return choice
+
 def main():
     clear_terminal()
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** WELCOME TO 'EXCUSE ME' APPLICATION ***\n")
