@@ -79,9 +79,32 @@ def main():
             show_about_page()
 
 def show_excuse_generator_page():
+    print("show_excuse_generator_page")
 
-def show_customers_excuses_page()
+def show_customers_excuses_page():
+    print("show_customers_excuses_page")
 
-def show_about_page()
+def show_about_page():
+    clear_terminal()
+    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** ABOUT 'EXCUSE ME' APPLICATION ***\n")
+
+    print("*******************************************************************************")
+    print("-- Need a quick excuse?\n")
+    print("-- 'EXCUSE ME' has you covered!\n")
+    print("-- Whether you're late, missing a deadline, or need a graceful exit,\n")
+    print("-- our app offers a vast library of tailored excuses for every situation.\n")
+    print("*******************************************************************************")
+
+    print("\n")
+    print(Fore.GREEN + Style.BRIGHT + "1. Generate new excuse\n")
+    print(Fore.GREEN + Style.BRIGHT + "2. Return to the main page\n")
+
+    menu_id = validate_number_input([1, 2])
+
+    match menu_id:
+        case 1:
+            show_excuse_generator_page()
+        case 2:
+            main()
 
 main()
