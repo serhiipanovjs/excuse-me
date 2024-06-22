@@ -68,4 +68,20 @@ def main():
     print(Fore.GREEN + Style.BRIGHT + "2. Show already generated excuses\n")
     print(Fore.GREEN + Style.BRIGHT + "3. Show information about application\n")
 
+    menu_id = validate_number_input([1, 2, 3])
+
+    match menu_id:
+        case 1:
+            show_excuse_generator_page()
+        case 2:
+            show_customers_excuses_page()
+        case 3:
+            show_about_page()
+
+def show_excuse_generator_page():
+
+def show_customers_excuses_page()
+
+def show_about_page()
+
 main()
