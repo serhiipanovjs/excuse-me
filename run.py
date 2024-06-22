@@ -38,3 +38,14 @@ def animated_input(text):
         sys.stdout.flush()
         time.sleep(0.05)
     return input()
+
+def main():
+    clear_terminal()
+    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** WELCOME TO 'EXCUSE ME' APPLICATION ***\n")
+    print("Please use our navigation and make your choice.\n")
+    print("\n")
+    print(Fore.GREEN + Style.BRIGHT + "1. Generate new excuse\n")
+    print(Fore.GREEN + Style.BRIGHT + "2. Show already generated excuses\n")
+    print(Fore.GREEN + Style.BRIGHT + "3. Show information about application\n")
+
+main()
