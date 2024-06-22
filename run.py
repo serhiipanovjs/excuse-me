@@ -82,7 +82,17 @@ def show_excuse_generator_page():
     print("show_excuse_generator_page")
 
 def show_customers_excuses_page():
-    print("show_customers_excuses_page")
+    clear_terminal()
+
+    excuse_answers_sheet = SHEET.worksheet('excuse_answers')
+    customers_excuses = excuse_answers_sheet.col_values(1)
+    customers_excuses.reverse()
+    customers_excuses_length = len(customers_excuses)
+    current_customers_excuse_index = 0
+
+    if customers_excuses_length == 0:
+        print("Empty data")
+        return
 
 def show_about_page():
     clear_terminal()
