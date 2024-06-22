@@ -94,6 +94,21 @@ def show_customers_excuses_page():
         print("Empty data")
         return
 
+    while True:
+        current_customers_excuse = customers_excuses[current_customers_excuse_index]
+        print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** CUSTOMERS EXCUSES ***\n")
+        print("*******************************************************************************")
+        print(current_customers_excuse)
+        print("*******************************************************************************")
+
+        print("\n")
+        print(Fore.GREEN + Style.BRIGHT + "1. Show next excuse\n")
+        print(Fore.GREEN + Style.BRIGHT + "2. Show previous excuse\n")
+        print(Fore.GREEN + Style.BRIGHT + "3. Copy this excuse to clipboard\n")
+        print(Fore.GREEN + Style.BRIGHT + "4. Return to the main page\n")
+
+        menu_id = validate_number_input([1, 2, 3, 4])
+
 def show_about_page():
     clear_terminal()
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** ABOUT 'EXCUSE ME' APPLICATION ***\n")
