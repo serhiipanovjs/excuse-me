@@ -108,6 +108,32 @@ def show_customers_excuses_page():
         print(Fore.GREEN + Style.BRIGHT + "4. Return to the main page\n")
 
         menu_id = validate_number_input([1, 2, 3, 4])
+        match menu_id:
+            case 1:
+                if current_customers_excuse_index + 1 == customers_excuses_length:
+                    current_customers_excuse_index = 0
+                else:
+                    current_customers_excuse_index += 1
+
+                clear_terminal()
+                continue
+            case 2:
+                if current_customers_excuse_index == 0:
+                    current_customers_excuse_index = customers_excuses_length - 1
+                else:
+                    current_customers_excuse_index -= 1
+
+                clear_terminal()
+                continue
+            case 3:
+                pyperclip.copy(current_customers_excuse)
+                animated_print("Excuse copied to clipboard...")
+                time.sleep(1)
+                clear_terminal()
+                continue
+            case 4:
+                main()
+                break
 
 def show_about_page():
     clear_terminal()
