@@ -95,10 +95,12 @@ def format_result_array_to_text(selected_cells, person_to_excuse_name, user_name
                 format_text += f"\n{current_sentence}"
     return format_text
 
-def show_menu(options, prompt="Please enter your choice: \n"):
+def show_menu(options, prompt="Please enter your choice: \n", gap = True):
     """Displays a menu with options and validates the user input."""
     for i, option in enumerate(options):
-        print(Fore.GREEN + Style.BRIGHT + f"{i + 1}. {option}\n")
+        print(Fore.GREEN + Style.BRIGHT + f"{i + 1}. {option}")
+        if gap:
+            print("")
     return validate_number_input(list(range(1, len(options) + 1)))
 
 def main():
@@ -199,7 +201,7 @@ def show_excuse_generator_page():
                 options.append("Step Back")
             options.append("Exit to main menu")
 
-            menu_id = show_menu(options)
+            menu_id = show_menu(options, False, False)
 
             match menu_id:
                 case 1 | 2 | 3 | 4:
