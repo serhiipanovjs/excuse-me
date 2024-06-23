@@ -213,11 +213,13 @@ def show_excuse_generator_page():
                 case 6:
                     if (current_column == 1):
                         main()
+                        break
                     current_column -= 1
                     del selected_cells[-1]
                     break
                 case 7:
                     main()
+                    break
 
     format_result = format_result_array_to_text(selected_cells, person_to_excuse_name, user_name)
     excuse_answers_sheet = SHEET.worksheet('excuse_answers')
