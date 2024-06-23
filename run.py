@@ -17,7 +17,8 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-# Load credentials from the service account file and authorize the gspread client
+# Load credentials from the service account file
+# and authorize the gspread client
 CREDENTIALS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDENTIALS = CREDENTIALS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDENTIALS)
@@ -43,6 +44,15 @@ def animated_input(text):
     return input()
 
 
+def print_header(text):
+    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + text)
+
+
+def print_length_from_stars():
+    print("*************************************\
+******************************************")
+
+
 def error_message(type):
     """Generates error messages based on the type of error."""
     messages = {
@@ -55,7 +65,8 @@ def error_message(type):
 
 
 def validate_number_input(valid_values):
-    """Validates that user input is a number and within the specified valid values."""
+    """Validates that user input is a number
+    and within the specified valid values."""
     while True:
         try:
             choice = int(input("Please enter your choice: \n"))
@@ -79,13 +90,15 @@ def validate_text_input(text):
         return choice
 
 
-def format_result_array_to_text(selected_cells, person_to_excuse_name, user_name):
+def format_result_array_to_text(
+        selected_cells, person_to_excuse_name, user_name):
     """Formats the selected excuse sentences into a complete text."""
     format_text = ''
     for cell_index, current_sentence in enumerate(selected_cells):
         match cell_index:
             case 0:
-                format_text += f"{current_sentence} {person_to_excuse_name}, {user_name} here, "
+                format_text += f"{current_sentence} {person_to_excuse_name}, \
+{user_name} here, "
                 continue
             case 1:
                 format_text += f"{current_sentence}"
@@ -113,11 +126,15 @@ def show_menu(options, prompt="Please enter your choice: \n", gap=True):
 def main():
     """Main function to display the initial menu and handle user choices."""
     clear_terminal()
-    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** WELCOME TO 'EXCUSE ME' APPLICATION ***\n")
+    print_header("*** WELCOME TO 'EXCUSE ME' APPLICATION ***\n")
     print("Please use our navigation and make your choice.\n")
     print("\n")
 
-    options = ["Generate new excuse", "Show already generated excuses", "Show information about application"]
+    options = [
+        "Generate new excuse",
+        "Show already generated excuses",
+        "Show information about application"
+    ]
     menu_id = show_menu(options)
 
     match menu_id:
@@ -132,29 +149,36 @@ def main():
 def show_registration_names_block():
     """Displays the registration block to gather names from the user."""
     clear_terminal()
-    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** REGISTRATION BLOCK ***\n")
+    print_header("*** REGISTRATION BLOCK ***\n")
     animated_print("Let's gather some information.\n\n")
 
     user_name = validate_text_input("Please enter your name: \n")
     clear_terminal()
-    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** REGISTRATION BLOCK ***\n")
+    print_header("*** REGISTRATION BLOCK ***\n")
     animated_print(f"Good job {user_name}!\n\n")
 
-    person_to_excuse_name = validate_text_input("Please enter the name of the person you want to excuse to: \n")
+    person_to_excuse_name = validate_text_input("Please enter the name \
+of the person you want to excuse to: \n")
 
-    return {"user_name": user_name, "person_to_excuse_name": person_to_excuse_name}
+    return {
+        "user_name": user_name,
+        "person_to_excuse_name": person_to_excuse_name
+    }
 
 
 def show_result_excuse_block(format_result):
     """Displays the generated excuse and provides options to the user."""
     clear_terminal()
-
-    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** YOUR EXCUSE IS CREATED ***\n")
-    print("*******************************************************************************")
+    print_header("*** YOUR EXCUSE IS CREATED ***\n")
+    print_length_from_stars()
     print(format_result)
-    print("*******************************************************************************")
+    print_length_from_stars()
 
-    options = ["Copy this excuse to clipboard", "Generate new excuse", "Return to the main page"]
+    options = [
+        "Copy this excuse to clipboard",
+        "Generate new excuse",
+        "Return to the main page"
+    ]
     menu_id = show_menu(options)
 
     match menu_id:
@@ -187,7 +211,8 @@ def show_excuse_generator_page():
         current_variant = 0
 
         while True:
-            first_four_variants = column_values[current_variant * 4:4 + (current_variant * 4)]
+            first_four_variants = column_values[
+                current_variant * 4:4 + (current_variant * 4)]
 
             if len(first_four_variants) < 4:
                 random.shuffle(column_values)
@@ -195,16 +220,18 @@ def show_excuse_generator_page():
                 continue
 
             clear_terminal()
-            print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** CONSTRUCT YOUR EXCUSE ***\n")
+            print_header("*** CONSTRUCT YOUR EXCUSE ***\n")
+            format_text = format_result_array_to_text(
+                selected_cells, person_to_excuse_name, user_name)
 
-            format_text = format_result_array_to_text(selected_cells, person_to_excuse_name, user_name)
-            print("*******************************************************************************")
+            print_length_from_stars()
             if (current_column != 1):
                 print(format_text)
             else:
                 print("Your result will be here after the first choice.")
-            print("*******************************************************************************")
-            print("\nChoose from the first four options or 'Generate new Variants'.\n")
+            print_length_from_stars()
+            print("\nChoose from the first four options or \
+'Generate new Variants'.\n")
 
             options = first_four_variants + ["Generate new Variants"]
             if current_column != 1:
@@ -232,7 +259,8 @@ def show_excuse_generator_page():
                     main()
                     break
 
-    format_result = format_result_array_to_text(selected_cells, person_to_excuse_name, user_name)
+    format_result = format_result_array_to_text(
+        selected_cells, person_to_excuse_name, user_name)
     excuse_answers_sheet = SHEET.worksheet('excuse_answers')
     excuse_answers_sheet.append_row([format_result])
     show_result_excuse_block(format_result)
@@ -254,12 +282,17 @@ def show_customers_excuses_page():
     current_index = 0
     while True:
         current_customers_excuse = customers_excuses[current_index]
-        print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** CUSTOMERS EXCUSES ***\n")
-        print("*******************************************************************************")
+        print_header("*** CUSTOMERS EXCUSES ***\n")
+        print_length_from_stars()
         print(current_customers_excuse)
-        print("*******************************************************************************")
+        print_length_from_stars()
 
-        options = ["Show next excuse", "Show previous excuse", "Copy this excuse to clipboard", "Return to the main page"]
+        options = [
+            "Show next excuse",
+            "Show previous excuse",
+            "Copy this excuse to clipboard",
+            "Return to the main page"
+        ]
         menu_id = show_menu(options)
 
         match menu_id:
@@ -285,14 +318,16 @@ def show_customers_excuses_page():
 def show_about_page():
     """Displays information about the application."""
     clear_terminal()
-    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** ABOUT 'EXCUSE ME' APPLICATION ***\n")
+    print_header("*** ABOUT 'EXCUSE ME' APPLICATION ***\n")
 
-    print("*******************************************************************************")
+    print_length_from_stars()
     print("-- Need a quick excuse?\n")
     print("-- 'EXCUSE ME' has you covered!\n")
-    print("-- Whether you're late, missing a deadline, or need a graceful exit,\n")
-    print("-- our app offers a vast library of tailored excuses for every situation.\n")
-    print("*******************************************************************************")
+    print("-- Whether you're late, missing a \
+deadline, or need a graceful exit,\n")
+    print("-- our app offers a vast library of \
+tailored excuses for every situation.\n")
+    print_length_from_stars()
     print("\n")
 
     options = ["Generate new excuse", "Return to the main page"]
@@ -306,9 +341,11 @@ def show_about_page():
 
 
 def show_non_content_page():
-    """Displays a message when there are no data and returns to the main page."""
+    """
+    Displays a message when there are no data and returns to the main page.
+    """
     clear_terminal()
-    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** EMPTY DATA ***\n")
+    print_header("*** EMPTY DATA ***\n")
     print("Sorry, but we did not find any data\n")
     print("After 5 seconds you will be return to the main page\n")
     time.sleep(5)
