@@ -198,8 +198,10 @@ def show_excuse_generator_page():
                 case 7:
                     main()
 
-    clear_terminal()
-    print(format_result_array_to_text(selected_cells, person_to_excuse_name, user_name))
+    format_result = format_result_array_to_text(selected_cells, person_to_excuse_name, user_name)
+    excuse_answers_sheet = SHEET.worksheet('excuse_answers')
+    excuse_answers_sheet.append_row([format_result])
+    show_customers_excuses_page()
 
 def show_customers_excuses_page():
     clear_terminal()
