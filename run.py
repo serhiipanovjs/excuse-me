@@ -114,9 +114,30 @@ def show_registration_names_block():
 def show_excuse_generator_page():
     participants = show_registration_names_block()
     clear_terminal()
+
     user_name = participants["user_name"]
     person_to_excuse_name = participants["person_to_excuse_name"]
-    print(user_name, person_to_excuse_name)
+    template_variants_sheet = SHEET.worksheet('template_variants')
+    column_count = template_variants_sheet.col_count
+    current_column = 1
+    result = []
+
+    while column_count >= current_column:
+        column_values = template_variants_sheet.col_values(current_column)
+        random.shuffle(column_values)
+        current_variant = 0
+
+        while True:
+            first_four_variants = column_values[current_variant * 4 : 4 + (current_variant * 4)]
+
+            if len(first_four_variants) < 4:
+                random.shuffle(column_values)
+                current_variant = 0
+                continue
+
+            print(first_four_variants)
+            current_column += 1
+            break
 
 def show_customers_excuses_page():
     clear_terminal()
