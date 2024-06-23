@@ -159,9 +159,6 @@ def show_excuse_generator_page():
             clear_terminal()
             print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** CONSTRUCT YOUR EXCUSE ***\n")
 
-            selected_cells.append(first_four_variants[0])
-            current_column += 1
-
             format_text = format_result_array_to_text(selected_cells, person_to_excuse_name, user_name)
             print("*******************************************************************************")
             if (current_column != 1):
@@ -184,7 +181,25 @@ def show_excuse_generator_page():
 
             menu_id = validate_number_input(valid_options_list)
 
-            break
+            match menu_id:
+                case 1 | 2 | 3 | 4:
+                    current_column += 1
+                    selected_cells.append(first_four_variants[menu_id - 1])
+                    break
+                case 5:
+                    current_variant += 1
+                    continue
+                case 6:
+                    if (current_column == 1):
+                        main()
+                    current_column -= 1
+                    del selected_cells[-1]
+                    break
+                case 7:
+                    main()
+
+    clear_terminal()
+    print(format_result_array_to_text(selected_cells, person_to_excuse_name, user_name))
 
 def show_customers_excuses_page():
     clear_terminal()
