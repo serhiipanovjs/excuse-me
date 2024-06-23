@@ -10,28 +10,32 @@ import random
 import pyperclip
 colorama.init(autoreset=True)
 
+# Define the scope for accessing Google Sheets and Google Drive
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
+# Load credentials from the service account file and authorize the gspread client
 CREDENTIALS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDENTIALS = CREDENTIALS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDENTIALS)
 SHEET = GSPREAD_CLIENT.open('my_excuse_sheet')
 
 def clear_terminal():
+    """Clears the terminal screen."""
     print(end="\033c", flush=True)
 
 def animated_print(text):
+    """Prints text with an animated effect."""
     for character in text:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
 
-
 def animated_input(text):
+    """Prompts user input with an animated effect."""
     for character in text:
         sys.stdout.write(character)
         sys.stdout.flush()
@@ -39,17 +43,19 @@ def animated_input(text):
     return input()
 
 def error_generator(type):
+    """Generates error messages based on the type of error."""
     match type:
         case "number":
             print(Fore.RED + "Invalid input. Enter valid number for Menu choice.\n")
         case "short":
             print(Fore.RED + "Invalid input. Enter non empty value.\n")
         case "long":
-            print(Fore.RED + "Invalid input. Entered value is to long.\n")
+            print(Fore.RED + "Invalid input. Entered value is too long.\n")
         case _:
             print(Fore.RED + "Invalid input.\n")
 
 def validate_number_input(validValues):
+    """Validates that user input is a number and within the specified valid values."""
     while True:
         try:
             choice = int(input("Please enter your choice: \n"))
@@ -63,6 +69,7 @@ def validate_number_input(validValues):
     return choice
 
 def validate_text_input(text):
+    """Validates that user input is a non-empty string and not too long."""
     while True:
         choice = animated_input(text)
         if len(choice) == 0:
@@ -75,27 +82,29 @@ def validate_text_input(text):
     return choice
 
 def format_result_array_to_text(selected_cells, person_to_excuse_name, user_name):
+    """Formats the selected excuse sentences into a complete text."""
     format_text = ''
     for cell_index in range(len(selected_cells)):
-         current_sentence = selected_cells[cell_index]
-         match cell_index:
-             case 0:
+        current_sentence = selected_cells[cell_index]
+        match cell_index:
+            case 0:
                 format_text += f"{current_sentence} {person_to_excuse_name}, {user_name} here, "
                 continue
-             case 1:
+            case 1:
                 format_text += f"{current_sentence}"
                 continue
-             case 2:
+            case 2:
                 format_text += f"\n\n{current_sentence}"
                 continue
-             case 7:
+            case 7:
                 format_text += f"\n\n{current_sentence}, {user_name}."
                 continue
-             case _:
-                 format_text += f"\n{current_sentence}"
+            case _:
+                format_text += f"\n{current_sentence}"
     return format_text
 
 def main():
+    """Main function to display the initial menu and handle user choices."""
     clear_terminal()
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** WELCOME TO 'EXCUSE ME' APPLICATION ***\n")
     print("Please use our navigation and make your choice.\n")
@@ -115,6 +124,7 @@ def main():
             show_about_page()
 
 def show_registration_names_block():
+    """Displays the registration block to gather names from the user."""
     clear_terminal()
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** REGISTRATION BLOCK ***\n")
     animated_print("Let's gather some information.\n\n")
@@ -132,6 +142,7 @@ def show_registration_names_block():
     return {"user_name": user_name, "person_to_excuse_name": person_to_excuse_name}
 
 def show_result_excuse_block(format_result):
+    """Displays the generated excuse and provides options to the user."""
     clear_terminal()
 
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** YOUR EXCUSE IS CREATED ***\n")
@@ -156,6 +167,7 @@ def show_result_excuse_block(format_result):
             main()
 
 def show_excuse_generator_page():
+    """Guides the user through the process of generating a new excuse."""
     participants = show_registration_names_block()
     clear_terminal()
 
@@ -227,6 +239,7 @@ def show_excuse_generator_page():
     show_result_excuse_block(format_result)
 
 def show_customers_excuses_page():
+    """Displays already generated excuses for the user to view and manage."""
     clear_terminal()
 
     excuse_answers_sheet = SHEET.worksheet('excuse_answers')
@@ -280,6 +293,7 @@ def show_customers_excuses_page():
                 break
 
 def show_about_page():
+    """Displays information about the application."""
     clear_terminal()
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** ABOUT 'EXCUSE ME' APPLICATION ***\n")
 
@@ -303,6 +317,7 @@ def show_about_page():
             main()
 
 def show_non_content_page():
+    """Displays a message when there are no data and returns to the main page."""
     clear_terminal()
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** EMPTY DATA ***\n")
     print("Sorry, but we did not find any data\n")
