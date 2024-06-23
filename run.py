@@ -78,8 +78,29 @@ def main():
         case 3:
             show_about_page()
 
+def show_registration_names_block():
+    clear_terminal()
+    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** REGISTRATION BLOCK ***\n")
+    animated_print("Let's gather some information.\n\n")
+    animated_print("Please type the name of the person who wants to excuse.\n\n")
+
+    user_name = animated_input("Enter name: \n")
+    clear_terminal()
+
+    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** REGISTRATION BLOCK ***\n")
+    animated_print("Good job!\n\n")
+    animated_print("And now, please enter the name of the person you would like to excuse to.\n\n")
+
+    person_to_excuse_name = animated_input("Enter name: \n")
+
+    return {"user_name": user_name, "person_to_excuse_name": person_to_excuse_name}
+
 def show_excuse_generator_page():
-    print("show_excuse_generator_page")
+    participants = show_registration_names_block()
+    clear_terminal()
+    user_name = participants["user_name"]
+    person_to_excuse_name = participants["person_to_excuse_name"]
+    print(user_name, person_to_excuse_name)
 
 def show_customers_excuses_page():
     clear_terminal()
