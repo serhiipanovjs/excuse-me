@@ -39,44 +39,39 @@ def animated_input(text):
     animated_print(text)
     return input()
 
-def error_generator(type):
+def error_message(type):
     """Generates error messages based on the type of error."""
-    match type:
-        case "number":
-            print(Fore.RED + "Invalid input. Enter valid number for Menu choice.\n")
-        case "short":
-            print(Fore.RED + "Invalid input. Enter non empty value.\n")
-        case "long":
-            print(Fore.RED + "Invalid input. Entered value is too long.\n")
-        case _:
-            print(Fore.RED + "Invalid input.\n")
+    messages = {
+        "number": "Invalid input. Enter valid number for Menu choice.\n",
+        "short": "Invalid input. Enter non-empty value.\n",
+        "long": "Invalid input. Entered value is too long.\n",
+        "default": "Invalid input.\n"
+    }
+    print(Fore.RED + messages.get(type, messages["default"]))
 
-def validate_number_input(validValues):
+def validate_number_input(valid_values):
     """Validates that user input is a number and within the specified valid values."""
     while True:
         try:
             choice = int(input("Please enter your choice: \n"))
-            if choice in validValues:
-                break
-            error_generator("number")
-            continue
+            if choice in valid_values:
+                return choice
+            error_message("number")
         except ValueError:
-            error_generator("number")
-            continue
-    return choice
+            error_message("number")
+
 
 def validate_text_input(text):
     """Validates that user input is a non-empty string and not too long."""
     while True:
         choice = animated_input(text)
         if len(choice) == 0:
-            error_generator("short")
+            error_message("short")
             continue
         if len(choice) >= 25:
-            error_generator("long")
+            error_message("long")
             continue
-        break
-    return choice
+        return choice
 
 def format_result_array_to_text(selected_cells, person_to_excuse_name, user_name):
     """Formats the selected excuse sentences into a complete text."""
