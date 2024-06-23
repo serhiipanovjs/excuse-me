@@ -131,6 +131,30 @@ def show_registration_names_block():
 
     return {"user_name": user_name, "person_to_excuse_name": person_to_excuse_name}
 
+def show_result_excuse_block(format_result):
+    clear_terminal()
+
+    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** YOUR EXCUSE IS CREATED ***\n")
+    print("*******************************************************************************")
+    print(format_result)
+    print("*******************************************************************************")
+
+    print(Fore.GREEN + Style.BRIGHT + "1. Copy this excuse to clipboard\n")
+    print(Fore.GREEN + Style.BRIGHT + "2. Generate new excuse\n")
+    print(Fore.GREEN + Style.BRIGHT + "3. Return to the main page\n")
+
+    menu_id = validate_number_input([1, 2, 3])
+    match menu_id:
+        case 1:
+            pyperclip.copy(format_result)
+            animated_print("Excuse copied to clipboard...")
+            time.sleep(1)
+            show_result_excuse_block(format_result)
+        case 2:
+            show_excuse_generator_page()
+        case 3:
+            main()
+
 def show_excuse_generator_page():
     participants = show_registration_names_block()
     clear_terminal()
@@ -200,7 +224,7 @@ def show_excuse_generator_page():
     format_result = format_result_array_to_text(selected_cells, person_to_excuse_name, user_name)
     excuse_answers_sheet = SHEET.worksheet('excuse_answers')
     excuse_answers_sheet.append_row([format_result])
-    show_customers_excuses_page()
+    show_result_excuse_block(format_result)
 
 def show_customers_excuses_page():
     clear_terminal()
