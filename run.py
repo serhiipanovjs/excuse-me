@@ -76,8 +76,7 @@ def validate_text_input(text):
 def format_result_array_to_text(selected_cells, person_to_excuse_name, user_name):
     """Formats the selected excuse sentences into a complete text."""
     format_text = ''
-    for cell_index in range(len(selected_cells)):
-        current_sentence = selected_cells[cell_index]
+    for cell_index, current_sentence in enumerate(selected_cells):
         match cell_index:
             case 0:
                 format_text += f"{current_sentence} {person_to_excuse_name}, {user_name} here, "
