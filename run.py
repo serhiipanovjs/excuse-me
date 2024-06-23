@@ -48,7 +48,7 @@ def print_header(text):
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + text)
 
 
-def print_length_from_stars():
+def print_string_from_stars():
     print("*************************************\
 ******************************************")
 
@@ -170,9 +170,9 @@ def show_result_excuse_block(format_result):
     """Displays the generated excuse and provides options to the user."""
     clear_terminal()
     print_header("*** YOUR EXCUSE IS CREATED ***\n")
-    print_length_from_stars()
+    print_string_from_stars()
     print(format_result)
-    print_length_from_stars()
+    print_string_from_stars()
 
     options = [
         "Copy this excuse to clipboard",
@@ -224,12 +224,12 @@ def show_excuse_generator_page():
             format_text = format_result_array_to_text(
                 selected_cells, person_to_excuse_name, user_name)
 
-            print_length_from_stars()
+            print_string_from_stars()
             if (current_column != 1):
                 print(format_text)
             else:
                 print("Your result will be here after the first choice.")
-            print_length_from_stars()
+            print_string_from_stars()
             print("\nChoose from the first four options or \
 'Generate new Variants'.\n")
 
@@ -283,9 +283,9 @@ def show_customers_excuses_page():
     while True:
         current_customers_excuse = customers_excuses[current_index]
         print_header("*** CUSTOMERS EXCUSES ***\n")
-        print_length_from_stars()
+        print_string_from_stars()
         print(current_customers_excuse)
-        print_length_from_stars()
+        print_string_from_stars()
 
         options = [
             "Show next excuse",
@@ -320,14 +320,14 @@ def show_about_page():
     clear_terminal()
     print_header("*** ABOUT 'EXCUSE ME' APPLICATION ***\n")
 
-    print_length_from_stars()
+    print_string_from_stars()
     print("-- Need a quick excuse?\n")
     print("-- 'EXCUSE ME' has you covered!\n")
     print("-- Whether you're late, missing a \
 deadline, or need a graceful exit,\n")
     print("-- our app offers a vast library of \
 tailored excuses for every situation.\n")
-    print_length_from_stars()
+    print_string_from_stars()
     print("\n")
 
     options = ["Generate new excuse", "Return to the main page"]
