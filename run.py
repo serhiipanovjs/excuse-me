@@ -231,14 +231,14 @@ def show_customers_excuses_page():
     customers_excuses = excuse_answers_sheet.col_values(1)
     customers_excuses.reverse()
     customers_excuses_length = len(customers_excuses)
-    current_customers_excuse_index = 0
 
     if customers_excuses_length == 0:
         show_non_content_page()
         return
 
+    current_index = 0
     while True:
-        current_customers_excuse = customers_excuses[current_customers_excuse_index]
+        current_customers_excuse = customers_excuses[current_index]
         print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** CUSTOMERS EXCUSES ***\n")
         print("*******************************************************************************")
         print(current_customers_excuse)
@@ -249,19 +249,11 @@ def show_customers_excuses_page():
 
         match menu_id:
             case 1:
-                if current_customers_excuse_index + 1 == customers_excuses_length:
-                    current_customers_excuse_index = 0
-                else:
-                    current_customers_excuse_index += 1
-
+                current_index = (current_index + 1) % len(customers_excuses)
                 clear_terminal()
                 continue
             case 2:
-                if current_customers_excuse_index == 0:
-                    current_customers_excuse_index = customers_excuses_length - 1
-                else:
-                    current_customers_excuse_index -= 1
-
+                current_index = (current_index - 1) % len(customers_excuses)
                 clear_terminal()
                 continue
             case 3:
