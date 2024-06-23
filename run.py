@@ -23,9 +23,11 @@ SCOPED_CREDENTIALS = CREDENTIALS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDENTIALS)
 SHEET = GSPREAD_CLIENT.open('my_excuse_sheet')
 
+
 def clear_terminal():
     """Clears the terminal screen."""
     print(end="\033c", flush=True)
+
 
 def animated_print(text):
     """Prints text with an animated effect."""
@@ -34,10 +36,12 @@ def animated_print(text):
         sys.stdout.flush()
         time.sleep(0.05)
 
+
 def animated_input(text):
     """Prompts user input with an animated effect."""
     animated_print(text)
     return input()
+
 
 def error_message(type):
     """Generates error messages based on the type of error."""
@@ -48,6 +52,7 @@ def error_message(type):
         "default": "Invalid input.\n"
     }
     print(Fore.RED + messages.get(type, messages["default"]))
+
 
 def validate_number_input(valid_values):
     """Validates that user input is a number and within the specified valid values."""
@@ -73,6 +78,7 @@ def validate_text_input(text):
             continue
         return choice
 
+
 def format_result_array_to_text(selected_cells, person_to_excuse_name, user_name):
     """Formats the selected excuse sentences into a complete text."""
     format_text = ''
@@ -94,13 +100,15 @@ def format_result_array_to_text(selected_cells, person_to_excuse_name, user_name
                 format_text += f"\n{current_sentence}"
     return format_text
 
-def show_menu(options, prompt="Please enter your choice: \n", gap = True):
+
+def show_menu(options, prompt="Please enter your choice: \n", gap=True):
     """Displays a menu with options and validates the user input."""
     for i, option in enumerate(options):
         print(Fore.GREEN + Style.BRIGHT + f"{i + 1}. {option}")
         if gap:
             print("")
     return validate_number_input(list(range(1, len(options) + 1)))
+
 
 def main():
     """Main function to display the initial menu and handle user choices."""
@@ -120,6 +128,7 @@ def main():
         case 3:
             show_about_page()
 
+
 def show_registration_names_block():
     """Displays the registration block to gather names from the user."""
     clear_terminal()
@@ -134,6 +143,7 @@ def show_registration_names_block():
     person_to_excuse_name = validate_text_input("Please enter the name of the person you want to excuse to: \n")
 
     return {"user_name": user_name, "person_to_excuse_name": person_to_excuse_name}
+
 
 def show_result_excuse_block(format_result):
     """Displays the generated excuse and provides options to the user."""
@@ -158,6 +168,7 @@ def show_result_excuse_block(format_result):
         case 3:
             main()
 
+
 def show_excuse_generator_page():
     """Guides the user through the process of generating a new excuse."""
     participants = show_registration_names_block()
@@ -176,7 +187,7 @@ def show_excuse_generator_page():
         current_variant = 0
 
         while True:
-            first_four_variants = column_values[current_variant * 4 : 4 + (current_variant * 4)]
+            first_four_variants = column_values[current_variant * 4:4 + (current_variant * 4)]
 
             if len(first_four_variants) < 4:
                 random.shuffle(column_values)
@@ -226,6 +237,7 @@ def show_excuse_generator_page():
     excuse_answers_sheet.append_row([format_result])
     show_result_excuse_block(format_result)
 
+
 def show_customers_excuses_page():
     """Displays already generated excuses for the user to view and manage."""
     clear_terminal()
@@ -269,6 +281,7 @@ def show_customers_excuses_page():
                 main()
                 break
 
+
 def show_about_page():
     """Displays information about the application."""
     clear_terminal()
@@ -291,6 +304,7 @@ def show_about_page():
         case 2:
             main()
 
+
 def show_non_content_page():
     """Displays a message when there are no data and returns to the main page."""
     clear_terminal()
@@ -299,5 +313,6 @@ def show_non_content_page():
     print("After 5 seconds you will be return to the main page\n")
     time.sleep(5)
     main()
+
 
 main()
