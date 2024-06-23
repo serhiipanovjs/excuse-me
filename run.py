@@ -8,7 +8,6 @@ import time
 import random
 
 import pyperclip
-
 colorama.init(autoreset=True)
 
 SCOPE = [
