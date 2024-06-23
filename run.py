@@ -36,10 +36,7 @@ def animated_print(text):
 
 def animated_input(text):
     """Prompts user input with an animated effect."""
-    for character in text:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
+    animated_print(text)
     return input()
 
 def error_generator(type):
