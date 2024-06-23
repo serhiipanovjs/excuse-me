@@ -299,12 +299,10 @@ def show_about_page():
     print("-- Whether you're late, missing a deadline, or need a graceful exit,\n")
     print("-- our app offers a vast library of tailored excuses for every situation.\n")
     print("*******************************************************************************")
-
     print("\n")
-    print(Fore.GREEN + Style.BRIGHT + "1. Generate new excuse\n")
-    print(Fore.GREEN + Style.BRIGHT + "2. Return to the main page\n")
 
-    menu_id = validate_number_input([1, 2])
+    options = ["Generate new excuse", "Return to the main page"]
+    menu_id = show_menu(options)
 
     match menu_id:
         case 1:
