@@ -43,6 +43,10 @@ def error_generator(type):
     match type:
         case "number":
             print(Fore.RED + "Invalid input. Enter valid number for Menu choice.\n")
+        case "short":
+            print(Fore.RED + "Invalid input. Enter non empty value.\n")
+        case "long":
+            print(Fore.RED + "Invalid input. Entered value is to long.\n")
         case _:
             print(Fore.RED + "Invalid input.\n")
 
@@ -57,6 +61,18 @@ def validate_number_input(validValues):
         except ValueError:
             error_generator("number")
             continue
+    return choice
+
+def validate_text_input(text):
+    while True:
+        choice = animated_input(text)
+        if len(choice) == 0:
+            error_generator("short")
+            continue
+        if len(choice) >= 25:
+            error_generator("long")
+            continue
+        break
     return choice
 
 def main():
@@ -84,14 +100,14 @@ def show_registration_names_block():
     animated_print("Let's gather some information.\n\n")
     animated_print("Please type the name of the person who wants to excuse.\n\n")
 
-    user_name = animated_input("Enter name: \n")
+    user_name = validate_text_input("Enter name: \n")
     clear_terminal()
 
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** REGISTRATION BLOCK ***\n")
     animated_print("Good job!\n\n")
     animated_print("And now, please enter the name of the person you would like to excuse to.\n\n")
 
-    person_to_excuse_name = animated_input("Enter name: \n")
+    person_to_excuse_name = validate_text_input("Enter name: \n")
 
     return {"user_name": user_name, "person_to_excuse_name": person_to_excuse_name}
 
