@@ -91,7 +91,7 @@ def show_customers_excuses_page():
     current_customers_excuse_index = 0
 
     if customers_excuses_length == 0:
-        print("Empty data")
+        show_non_content_page()
         return
 
     while True:
@@ -101,7 +101,6 @@ def show_customers_excuses_page():
         print(current_customers_excuse)
         print("*******************************************************************************")
 
-        print("\n")
         print(Fore.GREEN + Style.BRIGHT + "1. Show next excuse\n")
         print(Fore.GREEN + Style.BRIGHT + "2. Show previous excuse\n")
         print(Fore.GREEN + Style.BRIGHT + "3. Copy this excuse to clipboard\n")
@@ -157,5 +156,13 @@ def show_about_page():
             show_excuse_generator_page()
         case 2:
             main()
+
+def show_non_content_page():
+    clear_terminal()
+    print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** EMPTY DATA ***\n")
+    print("Sorry, but we did not find any data\n")
+    print("After 5 seconds you will be return to the main page\n")
+    time.sleep(5)
+    main()
 
 main()
