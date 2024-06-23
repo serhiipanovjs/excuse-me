@@ -156,10 +156,21 @@ def show_excuse_generator_page():
                 current_variant = 0
                 continue
 
+            clear_terminal()
+            print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** CONSTRUCT YOUR EXCUSE ***\n")
+
             selected_cells.append(first_four_variants[0])
-            format_text = format_result_array_to_text(selected_cells, person_to_excuse_name, user_name)
-            print(format_text)
             current_column += 1
+
+            format_text = format_result_array_to_text(selected_cells, person_to_excuse_name, user_name)
+            print("*******************************************************************************")
+            if (current_variant != 1):
+                print(format_text)
+            else:
+                print("Your result will be here after the first choice.")
+            print("*******************************************************************************")
+            print("\nChoose from the first four options or 'Generate new Variants'.\n")
+
             break
 
 def show_customers_excuses_page():
