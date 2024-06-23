@@ -95,17 +95,21 @@ def format_result_array_to_text(selected_cells, person_to_excuse_name, user_name
                 format_text += f"\n{current_sentence}"
     return format_text
 
+def show_menu(options, prompt="Please enter your choice: \n"):
+    """Displays a menu with options and validates the user input."""
+    for i, option in enumerate(options):
+        print(Fore.GREEN + Style.BRIGHT + f"{i + 1}. {option}\n")
+    return validate_number_input(list(range(1, len(options) + 1)))
+
 def main():
     """Main function to display the initial menu and handle user choices."""
     clear_terminal()
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** WELCOME TO 'EXCUSE ME' APPLICATION ***\n")
     print("Please use our navigation and make your choice.\n")
     print("\n")
-    print(Fore.GREEN + Style.BRIGHT + "1. Generate new excuse\n")
-    print(Fore.GREEN + Style.BRIGHT + "2. Show already generated excuses\n")
-    print(Fore.GREEN + Style.BRIGHT + "3. Show information about application\n")
 
-    menu_id = validate_number_input([1, 2, 3])
+    options = ["Generate new excuse", "Show already generated excuses", "Show information about application"]
+    menu_id = show_menu(options)
 
     match menu_id:
         case 1:
