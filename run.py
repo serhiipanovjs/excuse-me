@@ -124,16 +124,13 @@ def show_registration_names_block():
     clear_terminal()
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** REGISTRATION BLOCK ***\n")
     animated_print("Let's gather some information.\n\n")
-    animated_print("Please type the name of the person who wants to excuse.\n\n")
 
-    user_name = validate_text_input("Enter name: \n")
+    user_name = validate_text_input("Please enter your name: \n")
     clear_terminal()
-
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** REGISTRATION BLOCK ***\n")
     animated_print(f"Good job {user_name}!\n\n")
-    animated_print("And now, please enter the name of the person you would like to excuse to.\n\n")
 
-    person_to_excuse_name = validate_text_input("Enter name: \n")
+    person_to_excuse_name = validate_text_input("Please enter the name of the person you want to excuse to: \n")
 
     return {"user_name": user_name, "person_to_excuse_name": person_to_excuse_name}
 
