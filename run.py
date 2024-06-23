@@ -255,12 +255,9 @@ def show_customers_excuses_page():
         print(current_customers_excuse)
         print("*******************************************************************************")
 
-        print(Fore.GREEN + Style.BRIGHT + "1. Show next excuse\n")
-        print(Fore.GREEN + Style.BRIGHT + "2. Show previous excuse\n")
-        print(Fore.GREEN + Style.BRIGHT + "3. Copy this excuse to clipboard\n")
-        print(Fore.GREEN + Style.BRIGHT + "4. Return to the main page\n")
+        options = ["Show next excuse", "Show previous excuse", "Copy this excuse to clipboard", "Return to the main page"]
+        menu_id = show_menu(options)
 
-        menu_id = validate_number_input([1, 2, 3, 4])
         match menu_id:
             case 1:
                 if current_customers_excuse_index + 1 == customers_excuses_length:
