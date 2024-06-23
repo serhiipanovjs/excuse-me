@@ -164,12 +164,25 @@ def show_excuse_generator_page():
 
             format_text = format_result_array_to_text(selected_cells, person_to_excuse_name, user_name)
             print("*******************************************************************************")
-            if (current_variant != 1):
+            if (current_column != 1):
                 print(format_text)
             else:
                 print("Your result will be here after the first choice.")
             print("*******************************************************************************")
             print("\nChoose from the first four options or 'Generate new Variants'.\n")
+
+            menu_options = first_four_variants
+            valid_options_list = [1, 2, 3, 4, 5, 6]
+            menu_options.append("Generate new Variants")
+            if (current_column != 1):
+                menu_options.append("Step Back")
+                valid_options_list.append(7)
+            menu_options.append("Exit to main menu")
+
+            for menu_index in range(len(menu_options)):
+                print(Fore.GREEN + Style.BRIGHT + f"{menu_index + 1}. {menu_options[menu_index]}")
+
+            menu_id = validate_number_input(valid_options_list)
 
             break
 
