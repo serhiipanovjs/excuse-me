@@ -146,11 +146,9 @@ def show_result_excuse_block(format_result):
     print(format_result)
     print("*******************************************************************************")
 
-    print(Fore.GREEN + Style.BRIGHT + "1. Copy this excuse to clipboard\n")
-    print(Fore.GREEN + Style.BRIGHT + "2. Generate new excuse\n")
-    print(Fore.GREEN + Style.BRIGHT + "3. Return to the main page\n")
+    options = ["Copy this excuse to clipboard", "Generate new excuse", "Return to the main page"]
+    menu_id = show_menu(options)
 
-    menu_id = validate_number_input([1, 2, 3])
     match menu_id:
         case 1:
             pyperclip.copy(format_result)
