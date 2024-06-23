@@ -75,6 +75,27 @@ def validate_text_input(text):
         break
     return choice
 
+def format_result_array_to_text(selected_cells, person_to_excuse_name, user_name):
+    format_text = ''
+    for cell_index in range(len(selected_cells)):
+         current_sentence = selected_cells[cell_index]
+         match cell_index:
+             case 0:
+                format_text += f"{current_sentence} {person_to_excuse_name}, {user_name} here, "
+                continue
+             case 1:
+                format_text += f"{current_sentence}"
+                continue
+             case 2:
+                format_text += f"\n\n{current_sentence}"
+                continue
+             case 7:
+                format_text += f"\n\n{current_sentence}, {user_name}."
+                continue
+             case _:
+                 format_text += f"\n{current_sentence}"
+    return format_text
+
 def main():
     clear_terminal()
     print(Back.GREEN + Fore.WHITE + Style.BRIGHT + "*** WELCOME TO 'EXCUSE ME' APPLICATION ***\n")
@@ -120,7 +141,7 @@ def show_excuse_generator_page():
     template_variants_sheet = SHEET.worksheet('template_variants')
     column_count = template_variants_sheet.col_count
     current_column = 1
-    result = []
+    selected_cells = []
 
     while column_count >= current_column:
         column_values = template_variants_sheet.col_values(current_column)
@@ -135,7 +156,9 @@ def show_excuse_generator_page():
                 current_variant = 0
                 continue
 
-            print(first_four_variants)
+            selected_cells.append(first_four_variants[0])
+            format_text = format_result_array_to_text(selected_cells, person_to_excuse_name, user_name)
+            print(format_text)
             current_column += 1
             break
 
