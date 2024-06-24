@@ -32,11 +32,59 @@ At Excuse Me, we aim to help our users achieve their goals by providing a simple
 - Add Humor to Life: Enjoy the fun and creativity of using and sharing amusing excuses.
 
 ### Flowchart
-![Image of the flowchart of the game](./documentation/diagram_drawio.png)
-
+![Image of the flowchart of the game](documentation/diagram_drawio.png)
 
 ## Features
+- At the main page, select one of three options.
 
+![Main page](documentation/main_page.png)
+#### First main page option
+- First main page option takes to the excuse generator page.
+- Script start from input for username.
+
+![Registration block username](documentation/registration_block_username.png)
+- If the username is valid, show input to enter the name to excuse.
+
+![Registration block username to excuse](documentation/registration_block_username_to_excuse.png)
+- If the name to excuse is valid, show excuse generator page.
+
+![Excuse generator first_step](documentation/excuse_generator_first_step.png)
+- If select fifth option "Generate new Variants" at excuse generator page set new four options to the menu.
+- If select one from first four options, add selected variant to the result and show second step of excuse generator page.
+
+![Excuse generator second_step](documentation/excuse_generator_second_step.png)
+- From this step and all next steps present option "Step Back" which return to previous page and remove last item from excuse result.
+- If select one from first four options, add selected variant to the result and show third step of excuse generator page.
+
+![Excuse generator third_step](documentation/excuse_generator_third_step.png)
+- If select one from first four options, add selected variant to the result and show fourth step of excuse generator page
+
+![Excuse generator fourth_step](documentation/excuse_generator_fourth_step.png)
+- If select one from first four options, add selected variant to the result and show fifth step of excuse generator page.
+
+![Excuse generator fifth_step](documentation/excuse_generator_fifth_step.png)
+- If select one from first four options, add selected variant to the result and show sixth step of excuse generator page.
+
+![Excuse generator sixth_step](documentation/excuse_generator_sixth_step.png)
+- If select one from first four options, add selected variant to the result and show seventh step of excuse generator page.
+
+![Excuse generator seventh_step](documentation/excuse_generator_seventh_step.png)
+- If select one from first four options, add selected variant to the result and show eighth step of excuse generator page.
+
+![Excuse generator eighth_step](documentation/excuse_generator_eighth_step.png)
+- If select one from first four options, add selected variant to the result and show result excuse page.
+
+![Result excuse page](documentation/result_excuse_page.png)
+- If select first option "Copy this excuse to clipboard" copy result excuse to clipboard.
+#### Second main page option
+![Customers excuses](documentation/customers_excuses.png)
+- If select first option get next customer excuse.
+- If select second option get previous customer excuse.
+- If select third option "Copy this excuse to clipboard" copy selected excuse to clipboard.
+#### Third main page option
+![About page](documentation/about_page.png)
+- Show information about application.
+- If select first option takes to the excuse generator page.
 
 ### Error Handling
 
@@ -51,13 +99,6 @@ At Excuse Me, we aim to help our users achieve their goals by providing a simple
 
 
 ## Deployment
-
-### Version Control
--   The site was created using Gitpod editor and pushed to Github to the remote repository 'excuse-me'.
--   Git commands were used throughout the development to push the code to the remote repository. The following git commands were used:
-    -   git add .  - to add the files to the staging area before being committed.
-    -   git commit -m "commit message" - to commit changes to the local repository queue that are ready for the final step.
-    -   git push - to push all committed code to the remote repository on Github.
 
 ### Page Deployment
 -   The app was deployed with Heroku following these steps:
