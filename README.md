@@ -108,41 +108,42 @@ At Excuse Me, we aim to help our users achieve their goals by providing a simple
 
 ## Deployment
 
-### Page Deployment
--   The app was deployed with Heroku following these steps:
-    -   After creating a Heroku account, click "New" to create a new app from the dashboard.
-    -   Create a name of the app, that needs to be unique, and select your region. Press "Create app"
-    -   Go to settings and add the necessary Config_vars and build packs. Make sure that the build packs are set to "Python" and "NodeJS", in that order.
-    -   Go to Deploy tab and scroll down to Deployment Method.
-    -   Select GitHub and search for your GitHub repository.
-    -   Scroll down to deploy options.
-    -   For this project the Manual Deploy method was chosen.
-    -   Choose main branch and click Deploy Branch. This will deploy the current state of the branch specified.
-    -   Now the app is being built and when Deploy to Heroku has a green check mark, the build is finished.
-    -   Click View button to open the app in a browser window.
+### Deploying the Application
+-   The application was deployed on Heroku by following these steps:
+    -   Create a Heroku account, then click "New" on the dashboard to initiate a new app.
+    -   Choose a unique name for your app, select your region, and click "Create app".
+    -   Navigate to the settings, add the necessary Config Vars, and set the build packs to "Python" and "Node.js" (in that order).
+    -   Go to the Deployment tab, and scroll down to Deployment Method.
+    -   Select GitHub and connect to your GitHub repository.
+    -   Scroll down to the deployment options.
+    -   Select the main branch and click "Deploy Branch". This deploys the current state of the selected branch.
+    -   The app will now be built. Once the deployment to Heroku is complete (indicated by a green check mark), the build is finished.
+    -   Add environment variable: "PORT" : 8000"
+    -   Add environment variable: "CREDS" : { Your JSON object with credentials from Google service account}"
+    -   Click the "View" button to open the app in a browser window.
 
-### Cloning of the Repository Code locally
--   Go to the GitHub repository that you want to clone.
--   Click on the Code button located above all the project files.
--   Click on HTTPS and copy the repository link.
--   Open the IDE of your choice and paste the copied git url into the IDE terminal.
--   The project is now created as a local clone.
+### Cloning the Repository Locally
+-   Go to the GitHub repository you want to clone.
+-   Click the "Code" button above the project files.
+-   Select "HTTPS" and copy the repository link.
+-   Open your preferred IDE and paste the copied Git URL into the terminal.
+-   The project will now be cloned to your local machine.
 
 
 ## Content
 
 ### Technologies Used
--   Programming language was Python.
+-   Programming language Python.
 
--   Used the following Libraries:
-    - gspread.
-    - colorama.
-    - sys.
-    - time.
-    - random
-    - pyperclip
+
+- **Used the following Libraries:**
+  - **gspread**: A Python API for Google Sheets that allows for reading, writing, and updating spreadsheets.
+  - **colorama**: A library for producing colored terminal text and formatting in Python applications.
+  - **sys**: Provides access to system-specific parameters and functions, such as command-line arguments and standard I/O.
+  - **time**: A module for working with time-related functions, such as sleeping, measuring, and manipulating time.
+  - **random**: A module for generating random numbers, shuffling sequences, and selecting random elements.
+  - **pyperclip**: A cross-platform Python module for copying and pasting text to and from the clipboard.
 - GitHub was used to store the repository for submission.
-
 - Heroku was used to deploy the live version of the terminal.
 ## Credits
 
