@@ -87,16 +87,24 @@ At Excuse Me, we aim to help our users achieve their goals by providing a simple
 - If select first option takes to the excuse generator page.
 
 ### Error Handling
+- In application added two type of input validators: Number input validator and Text input validator
+- When user set invalid value to the Number input validator, set the error.
 
+![Registration block username](documentation/number_errors.png)
+
+- When user set invalid value to the Text input validator, set the error.
+
+![Registration block username](documentation/text_errors.png)
 
 ## Testing
-
 
 ### Feature testing
 
 
 ### Validator Testing
-
+-   Used [CI Python Linter](https://pep8ci.herokuapp.com/) to test run.py the code.
+-   Result: run.py had no errors or warnings.
+![Picture of pep8 test on run.py](documentation/pep8_run.png)
 
 ## Deployment
 
@@ -104,7 +112,7 @@ At Excuse Me, we aim to help our users achieve their goals by providing a simple
 -   The app was deployed with Heroku following these steps:
     -   After creating a Heroku account, click "New" to create a new app from the dashboard.
     -   Create a name of the app, that needs to be unique, and select your region. Press "Create app"
-    -   Go to settings and add the necessary Config_vars and buildpacks. Make sure that the buildpacks are set to "Python" and "NodeJS", in that order.
+    -   Go to settings and add the necessary Config_vars and build packs. Make sure that the build packs are set to "Python" and "NodeJS", in that order.
     -   Go to Deploy tab and scroll down to Deployment Method.
     -   Select GitHub and search for your GitHub repository.
     -   Scroll down to deploy options.
@@ -114,15 +122,27 @@ At Excuse Me, we aim to help our users achieve their goals by providing a simple
     -   Click View button to open the app in a browser window.
 
 ### Cloning of the Repository Code locally
--   Go to the Github repository that you want to clone.
+-   Go to the GitHub repository that you want to clone.
 -   Click on the Code button located above all the project files.
 -   Click on HTTPS and copy the repository link.
--   Open the IDE of your choice and and paste the copied git url into the IDE terminal.
+-   Open the IDE of your choice and paste the copied git url into the IDE terminal.
 -   The project is now created as a local clone.
 
 
 ## Content
 
 ### Technologies Used
+-   Programming language was Python.
 
+-   Used the following Libraries:
+    - gspread.
+    - colorama.
+    - sys.
+    - time.
+    - random
+    - pyperclip
+- GitHub was used to store the repository for submission.
+
+- Heroku was used to deploy the live version of the terminal.
 ## Credits
+
