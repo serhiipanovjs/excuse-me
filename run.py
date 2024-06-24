@@ -272,14 +272,13 @@ def show_customers_excuses_page():
 
     excuse_answers_sheet = SHEET.worksheet('excuse_answers')
     customers_excuses = excuse_answers_sheet.col_values(1)
-    customers_excuses.reverse()
     customers_excuses_length = len(customers_excuses)
 
     if customers_excuses_length == 0:
         show_non_content_page()
         return
 
-    current_index = 0
+    current_index = customers_excuses_length - 1
     while True:
         current_customers_excuse = customers_excuses[current_index]
         print_header("*** CUSTOMERS EXCUSES ***")
