@@ -146,3 +146,15 @@ At Excuse Me, we aim to help our users achieve their goals by providing a simple
 - Heroku was used to deploy the live version of the terminal.
 ## Credits
 
+Our project wouldn't have been possible without the invaluable contributions from various sources:
+
+- **Irish Government**: I extend my sincere appreciation to the Irish government for their generous support and
+  sponsorship, which played a vital role in the success of this project.
+- **Code Institute**: A heartfelt thank you to Code Institute for their educational resources, which equipped me with
+  the skills and knowledge necessary to bring this project to fruition.
+- **Mentorship**: Special gratitude goes to my mentor, Sheryl Goldberg, whose unwavering support propelled me forward,
+  turning challenges into opportunities for growth.
+- **Personal Contributions**: My own dedication and expertise shaped this project's success, from conceptualization to
+  execution.
+- **Community Support**: I'm thankful for the vibrant developer community whose discussions, tutorials, and open-source
+  contributions inspired and informed my work.
