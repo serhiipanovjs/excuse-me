@@ -282,7 +282,8 @@ def show_customers_excuses_page():
     current_index = 0
     while True:
         current_customers_excuse = customers_excuses[current_index]
-        print_header("*** CUSTOMERS EXCUSES ***\n")
+        print_header("*** CUSTOMERS EXCUSES ***")
+        print(f"Excuse number {current_index + 1} of {customers_excuses_length}")
         print_string_from_stars()
         print(current_customers_excuse)
         print_string_from_stars()
