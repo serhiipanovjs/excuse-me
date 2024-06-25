@@ -98,8 +98,69 @@ At Excuse Me, we aim to help our users achieve their goals by providing a simple
 
 ## Testing
 
-### Feature testing
+### Manual testing
 
+#### 1. Initialization and Setup
+- Verified the application initialized without errors.
+- Ensured the Google Sheets credentials were correctly loaded and authorized.
+
+#### 2. Main Menu
+- Verified the main menu was displayed with the following options:
+1. Generate new excuse
+2. Show already generated excuses
+3. Show information about application
+
+#### 3. Generate New Excuse
+- Selected "Generate new excuse" from the main menu.
+- Verified the prompt for name input appeared.
+- **Name Inputs:**
+    - Entered a valid name and verified.
+    - Entered an empty name and verified an appropriate error message was displayed.
+    - Entered a very long name (exceeding expected length) and verified an appropriate error message was displayed.
+    - Entered special characters in the name and verified the excuse was generated correctly or an appropriate error message was displayed.
+
+- **Menu Options:**
+    - Verified the following menu options were available after generating an excuse:
+        - 1: Part 1: Randomly get text from the excuse template.
+        - 2: Part 2: Randomly get text from the excuse template.
+        - 3: Part 3: Randomly get text from the excuse template.
+        - 4: Part 4: Randomly get text from the excuse template.
+        - 5: Get new 4 variants: Replace the first four variants with new ones.
+        - 6: Step back: Remove the last variant from the result and return to the previous step.
+        - 7: Return to the main menu.
+    - Selected "Part 1" added selected text to the excuse result and switch to the next step.
+    - Selected "Part 2" added selected text to the excuse result and switch to the next step.
+    - Selected "Part 3" added selected text to the excuse result and switch to the next step.
+    - Selected "Part 4" added selected text to the excuse result and switch to the next step.
+    - Selected "Get new 4 variants" and verified the first four parts were replaced with new ones.
+    - Selected "Step back" the system returned to the previous step.
+    - Selected "Return to the main menu" and verified the system returned to the main menu.
+- Ensured the excuse was appended to the Google Sheet.
+- Checked that the system correctly returned to the excuse result menu after generating the excuse.
+
+#### 4. Show already generated excuses
+- Selected "Show already generated excuses" from the main menu.
+- Verified the Saved Excuses page was displayed with the following options:
+1. Show next excuse
+2. Show previous excuse
+3. Copy this excuse to clipboard
+4. Return to the main page
+- Verified the list of saved excuses was displayed.
+- Navigated through the excuses using "Show next excuse" and "Show previous excuse" options.
+- Tested the "Copy this excuse to clipboard" functionality and verified the excuse was copied.
+- Ensured the "Return to the main page" option worked correctly.
+
+#### 5. About Page
+- Selected "About" from the main menu.
+- Verified the About page was displayed with the following options:
+1. Generate new excuse
+2. Return to the main page
+- Verified the information about the application was correctly displayed.
+- Tested the navigation options: "Generate new excuse" and "Return to the main page."
+
+#### 6. Clipboard Functionality
+- Tested the "Copy this excuse to clipboard" option and verified the excuse text was correctly copied to the clipboard.
+- Ensured the clipboard content matched the displayed excuse.
 
 ### Validator Testing
 -   Used [CI Python Linter](https://pep8ci.herokuapp.com/) to test run.py the code.
@@ -119,7 +180,7 @@ At Excuse Me, we aim to help our users achieve their goals by providing a simple
     -   Select the main branch and click "Deploy Branch". This deploys the current state of the selected branch.
     -   The app will now be built. Once the deployment to Heroku is complete (indicated by a green check mark), the build is finished.
     -   Add environment variable: "PORT" : 8000"
-    -   Add environment variable: "CREDS" : { Your JSON object with credentials from Google service account}"
+    -   Add environment variable: "CREDS" : { Your JSON object with credentials from Google service account }"
     -   Click the "View" button to open the app in a browser window.
 
 ### Cloning the Repository Locally
