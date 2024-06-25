@@ -120,19 +120,19 @@ At Excuse Me, we aim to help our users achieve their goals by providing a simple
     - Entered special characters in the name and verified the excuse was generated correctly or an appropriate error message was displayed.
 
 - **Menu Options:**
-    - Verified the following menu options were available after generating an excuse:
+    - Verified the following menu options were available after names selecting:
         - 1: Part 1: Randomly get text from the excuse template.
         - 2: Part 2: Randomly get text from the excuse template.
         - 3: Part 3: Randomly get text from the excuse template.
         - 4: Part 4: Randomly get text from the excuse template.
-        - 5: Get new 4 variants: Replace the first four variants with new ones.
+        - 5: Generate new Variants: Replace the first four variants with new ones.
         - 6: Step back: Remove the last variant from the result and return to the previous step.
         - 7: Return to the main menu.
     - Selected "Part 1" added selected text to the excuse result and switch to the next step.
     - Selected "Part 2" added selected text to the excuse result and switch to the next step.
     - Selected "Part 3" added selected text to the excuse result and switch to the next step.
     - Selected "Part 4" added selected text to the excuse result and switch to the next step.
-    - Selected "Get new 4 variants" and verified the first four parts were replaced with new ones.
+    - Selected "Generate new Variants" and verified the first four parts were replaced with new ones.
     - Selected "Step back" the system returned to the previous step.
     - Selected "Return to the main menu" and verified the system returned to the main menu.
 - Ensured the excuse was appended to the Google Sheet.
@@ -151,7 +151,7 @@ At Excuse Me, we aim to help our users achieve their goals by providing a simple
 - Ensured the "Return to the main page" option worked correctly.
 
 #### 5. About Page
-- Selected "About" from the main menu.
+- Selected "Show information about application" from the main menu.
 - Verified the About page was displayed with the following options:
 1. Generate new excuse
 2. Return to the main page
